@@ -122,7 +122,9 @@ const MovieDetails = () => {
               <Spinner animation="border" variant="warning" />
             </div>
           )}
-          <ListGroup>
+          
+          <ListGroup className="mt-5">
+          <h2>Comments</h2>
             {comments.length > 0 ? (
               comments.map((c) => {
                 return (
