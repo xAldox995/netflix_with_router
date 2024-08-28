@@ -101,14 +101,19 @@ const MovieDetails = () => {
       <Row className="justify-content-center">
         <Col xs={12} md={8} lg={6}>
           {movieDetails ? (
-            <Card bg="dark" className="text-center text-light border border-tertiary">
+            <Card
+              bg="dark"
+              className="text-center text-light border border-tertiary"
+            >
               <Card.Img variant="top" src={movieDetails.Poster} />
               <Card.Body>
                 <Card.Title>{movieDetails.Title}</Card.Title>
                 <Card.Text>
-                  <spanp>{movieDetails.Plot}</spanp>
-                  <span>{movieDetails.Genre}</span>
-                  <span>{movieDetails.Released}</span>
+                  <div>
+                    <p>{movieDetails.Plot}</p>
+                    <p>{movieDetails.Genre}</p>
+                    <p>{movieDetails.Released}</p>
+                  </div>
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -121,15 +126,12 @@ const MovieDetails = () => {
             {comments.length > 0 ? (
               comments.map((c) => {
                 return (
-<ListGroup.Item key={c._id} className="bg-dark text-light">
-  <spanp>
-    {c.author} : {c.comment} || {c.rate}
-  </spanp>
-  
-  
- 
-  </ListGroup.Item>
-                )
+                  <ListGroup.Item key={c._id} className="bg-dark text-light">
+                    <spanp>
+                      {c.author} : {c.comment} || {c.rate}
+                    </spanp>
+                  </ListGroup.Item>
+                );
               })
             ) : (
               <ListGroup.Item className="bg-dark text-light">
