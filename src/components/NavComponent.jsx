@@ -1,21 +1,19 @@
 
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const NavComponent = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" data-bs-theme="dark">
       <Container fluid>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand as={Link} to={'/'}>
           <img
             src="https://img.icons8.com/?size=100&id=20519&format=png&color=000000"
             alt="logoNetflix"
           />
         </Navbar.Brand>
         <Nav className="me-auto d-flex flex-row">
-          <Nav.Link className="ms-4" href="#">
-            Home
-          </Nav.Link>
-          <Nav.Link className="ms-4" href="#">
+          <Nav.Link className="ms-4" as={Link} to={'/tv-shows'}>
             TV Shows
           </Nav.Link>
           <Nav.Link className="ms-4" href="#">
