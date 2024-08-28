@@ -35,6 +35,7 @@ const MoviesComp = ({ urlForFetch, title }) => {
         {movies.slice(0, 6).map((movie) => (
           <MovieCard
             key={movie.imdbID}
+            id={movie.imdbID}
             poster={movie.Poster}
             title={movie.Title}
           />

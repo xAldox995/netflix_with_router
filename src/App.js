@@ -22,11 +22,10 @@ function App() {
               <MoviesComp title='Toretto Saga' urlForFetch='https://www.omdbapi.com/?i=tt3896198&apikey=a145b183&s=Fast&Furious' />
               <MoviesComp title='Alien Saga' urlForFetch='https://www.omdbapi.com/?i=tt3896198&apikey=a145b183&s=Alien' />
             </>
-          } >
-          </Route>
-          <Route path='/tv-shows' element = {<TVShows/>}>
+          } />
+          <Route path='/tv-shows' element={<TVShows />}/>
+          <Route path='/movie-details/:movieID' element />
 
-          </Route>
         </Routes>
 
       </main>
