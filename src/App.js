@@ -20,7 +20,7 @@ function App() {
           <Route path='/' element={
             <>
               <MoviesComp title='Predator Saga' urlForFetch='https://www.omdbapi.com/?i=tt3896198&apikey=a145b183&s=Predator' />
-              <MoviesComp title='Toretto Saga' urlForFetch='https://www.omdbapi.com/?i=tt3896198&apikey=a145b183&s=Fast&Furious' />
+              <MoviesComp title='Toretto Saga' urlForFetch='https://www.omdbapi.com/?i=tt3896198&apikey=a145b183&s=Harry%20Potter' />
               <MoviesComp title='Alien Saga' urlForFetch='https://www.omdbapi.com/?i=tt3896198&apikey=a145b183&s=Alien' />
             </>
           } />

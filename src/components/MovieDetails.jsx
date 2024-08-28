@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Container, Row, Col, Card, ListGroup, Spinner } from "react-bootstrap";
 
 const MovieDetails = () => {
   const { movieID } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
   const [comments, setComments] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
 
   const fetchMovieDetails = () => {
     fetch(`http://www.omdbapi.com/?apikey=66505d5c&i=${movieID}`)
@@ -24,8 +23,6 @@ const MovieDetails = () => {
       })
       .catch((error) => {
         console.log("Errore nel catch dei dettagli film", error);
-        setError("Impossibile caricare i dettagli del film");
-        setIsLoading(false);
       });
   };
 
@@ -56,37 +53,93 @@ const MovieDetails = () => {
   useEffect(() => {
     fetchMovieDetails();
     fetchComments();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [movieID]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
+  // return (
+  //   <div className="text-light my-5 text-center border border-tertiary">
+  //     {movieDetails && (
+  //       <>
+  //         {/* <h1>{movieDetails.Title}</h1>
+  //         <p>{movieDetails.Plot}</p>
+  //         <img src={movieDetails.Poster} alt={movieDetails.Title} />
+  //         <p>Directed by: {movieDetails.Director}</p>
+  //         <p>Released: {movieDetails.Released}</p>
+  //         <p>Genre: {movieDetails.Genre}</p> */}
+  //         <Card bg="dark" className="text-center text-light">
+  //           <Card.Img variant="top" src={movieDetails.Poster} />
+  //           <Card.Body>
+  //             <Card.Title>{movieDetails.Title}</Card.Title>
+  //             <Card.Text>
+  //             <p>{movieDetails.Plot}</p>
+  //             <p>{movieDetails.Genre}</p>
+  //             <p>{movieDetails.Released}</p>
+  //             </Card.Text>
+  //           </Card.Body>
+  //         </Card>
+  //       </>
+  //     )}
+
+  //     <div className=" comments-section">
+  //       <h2>Comments</h2>
+  //       {comments.length > 0 ? (
+  //         <ListGroup>
+  //           {comments.map((comment) => (
+  //             <ListGroupItem key={comment._id}>
+  //               <strong>{comment.author}:</strong> {comment.comment}
+  //             </ListGroupItem>
+  //           ))}
+  //         </ListGroup>
+  //       ) : (
+  //         <h3>No comments available.</h3>
+  //       )}
+  //     </div>
+  //   </div>
+  // );
   return (
-    <div className="text-light my-5 text-center">
-      {movieDetails && (
-        <>
-          <h1>{movieDetails.Title}</h1>
-          <p>{movieDetails.Plot}</p>
-          <img src={movieDetails.Poster} alt={movieDetails.Title} />
-          <p>Directed by: {movieDetails.Director}</p>
-          <p>Released: {movieDetails.Released}</p>
-          <p>Genre: {movieDetails.Genre}</p>
-        </>
-      )}
-
-      <div className=" comments-section">
-        <h2>Comments</h2>
-        {comments.length > 0 ? (
-          <ul>
-            {comments.map((comment) => (
-              <li key={comment.id}>
-                <strong>{comment.author}:</strong> {comment.text}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <h3>No comments available.</h3>
-        )}
-      </div>
-    </div>
+    <Container className="text-light my-5 text-center">
+      <Row className="justify-content-center">
+        <Col xs={12} md={8} lg={6}>
+          {movieDetails ? (
+            <Card bg="dark" className="text-center text-light border border-tertiary">
+              <Card.Img variant="top" src={movieDetails.Poster} />
+              <Card.Body>
+                <Card.Title>{movieDetails.Title}</Card.Title>
+                <Card.Text>
+                  <spanp>{movieDetails.Plot}</spanp>
+                  <span>{movieDetails.Genre}</span>
+                  <span>{movieDetails.Released}</span>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          ) : (
+            <div className="text-center">
+              <Spinner animation="border" variant="warning" />
+            </div>
+          )}
+          <ListGroup>
+            {comments.length > 0 ? (
+              comments.map((c) => {
+                return (
+<ListGroup.Item key={c._id} className="bg-dark text-light">
+  <spanp>
+    {c.author} : {c.comment} || {c.rate}
+  </spanp>
+  
+  
+ 
+  </ListGroup.Item>
+                )
+              })
+            ) : (
+              <ListGroup.Item className="bg-dark text-light">
+                Non ci sono recensioni per questo film
+              </ListGroup.Item>
+            )}
+          </ListGroup>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
