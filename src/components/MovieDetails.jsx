@@ -82,7 +82,7 @@ const MovieDetails = () => {
             ))}
           </ul>
         ) : (
-          <p>No comments available.</p>
+          <h3>No comments available.</h3>
         )}
       </div>
     </div>
