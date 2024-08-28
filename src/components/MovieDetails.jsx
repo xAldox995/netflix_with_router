@@ -56,6 +56,7 @@ const MovieDetails = () => {
   useEffect(() => {
     fetchMovieDetails();
     fetchComments();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movieID]);
 
   return (
