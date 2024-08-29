@@ -108,13 +108,9 @@ const MovieDetails = () => {
               <Card.Img variant="top" src={movieDetails.Poster} />
               <Card.Body>
                 <Card.Title>{movieDetails.Title}</Card.Title>
-                <Card.Text>
-                  <div>
-                    <p>{movieDetails.Plot}</p>
-                    <p>{movieDetails.Genre}</p>
-                    <p>{movieDetails.Released}</p>
-                  </div>
-                </Card.Text>
+                <Card.Text>{movieDetails.Plot}</Card.Text>
+                <Card.Text>{movieDetails.Genre}</Card.Text>
+                <Card.Text>{movieDetails.Released}</Card.Text>
               </Card.Body>
             </Card>
           ) : (
@@ -122,16 +118,14 @@ const MovieDetails = () => {
               <Spinner animation="border" variant="warning" />
             </div>
           )}
-          
+
           <ListGroup className="mt-5">
-          <h2>Comments</h2>
+            <h2>Comments</h2>
             {comments.length > 0 ? (
               comments.map((c) => {
                 return (
                   <ListGroup.Item key={c._id} className="bg-dark text-light">
-                    <spanp>
-                      {c.author} : {c.comment} || {c.rate}
-                    </spanp>
+                    {c.author} : {c.comment} || {c.rate}
                   </ListGroup.Item>
                 );
               })
